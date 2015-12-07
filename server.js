@@ -5,7 +5,7 @@ var express = require('express'),
 	request = require('request'),
 	UserController = require('./server-assets/controllers/userCtrl.js'),
 	CartController = require('./server-assets/controllers/cartCtrl.js'),
-	MoviesController = require('./server-assets/controllers/moviesCtrl.js'),
+	MovieController = require('./server-assets/controllers/movieCtrl.js'),
 	port = 9001,
 	apiKey = 'xznvr6m97fwgs2ycfhyajrwp',
 	app = express();
@@ -25,10 +25,10 @@ app.use(cors(), bodyParser.json(), express.static(__dirname+'/public'));
 // app.delete('/api/cart/:id', CartController.removeItem);
 
 // Movies endpoints
-app.get('/api/movies', MoviesController.getMovies);
-// app.post('/api/movies', MoviesController.addMovies);
-// app.put('/api/movies/:id', MoviesController.editMovies);
-// app.delete('/api/movies/:id', MoviesController.archiveMovies);
+app.get('/api/movies', MovieController.getMovies);
+// app.post('/api/movies', MovieController.addMovies);
+// app.put('/api/movies/:id', MovieController.editMovies);
+// app.delete('/api/movies/:id', MovieController.archiveMovies);
 
 app.listen(port, function() {
 	console.log('Listening on port:', port);

@@ -1,15 +1,36 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
 body {
 	background-image: url('/images/movie_theatre.jpg');
 	background-size: 100%;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
+	margin-bottom: 5%;
 }
 .white {
 	color: white;
 }
+.underline {
+	text-decoration: underline;
+}
 a:hover, a:visited {
 	color: white;
 }
-.link {
+.title, .price, .link {
 	font-size: 1.3em;
+}
+.search {
+	width: 20%;
+}
+.selected, .selected:hover {
+	background-color: white;
+	color: #337ab7;
+	border-color: white;
+}
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 }

@@ -1,30 +1,31 @@
 <div class="container">
 	<div class="text-center">
 		<a ui-sref="home"><button class="btn-primary glyphicon glyphicon-home">Home</button></a>
-		<a ui-sref="movies"><button class="btn-primary glyphicon glyphicon-film">Movies</button></a>
+		<a ui-sref="movies"><button class="btn-primary glyphicon glyphicon-film selected">Movies</button></a>
 		<a ui-sref="user"><button class="btn-primary glyphicon glyphicon-user">Account</button></a>
 		<a ui-sref="cart"><button class="btn-primary glyphicon glyphicon-shopping-cart">Cart</button></a>
 		<a ui-sref="login"><button class="btn-danger glyphicon glyphicon-log-out">Logout</button></a>
 	</div>
 <hr>
 	<div class="text-center">
-		<input type='text' placeholder="Search for a movie" ng-model="title">
-		<button class="btn-primary">Search</button>
+		<form>
+			<input class="search" type='text' placeholder="Search for movie by title" ng-model="title">
+			<button class="btn-primary" type="submit" ng-click="getMovies(title)">Search</button>
+		</form>
 	</div>
 <br>
 <br>
-	<!-- <div class="panel panel-default">
-    	<div class="panel-heading"> Your Search Results:</div>
-   		<div class="gridStyle" ng-grid="gridOptions" swap-image="defaultInfo.search"></div>
-    </div> -->
-	<div>
-		<div ng-repeat="movie in movies" class="white col-md-2">
-			<img ng-src="{{movie.image}}"><br>
-			{{movie.name}}<br>
-			{{movie.artistName}}<br>
-			{{movie.genre}}<br>
-			{{movie.salePrice}}</br>
-			<button class="btn-warning">Add To Cart</button>
-		</div>
+	<div class="row" ng-hide="!clicked">
+		<div class="col-md-3 white text-center"><h4 class="underline">Cover Art</h4></div>
+		<div class="col-md-3 white text-center"><h4 class="underline">Title</h4></div>
+		<div class="col-md-3 white text-center"><h4 class="underline">Price</h4></div>
+		<div class="col-md-3 white text-center"><h4 class="underline">Purchase<h4></div>
+	</div>
+	<div ng-repeat="movie in movies" class="white row" ng-hide="movie.image === 'http://img.bbystatic.com/BestBuy_US/images/products/nonsku/default_movies_l.jpg'">
+		<br>
+		<div class="col-md-3 text-center"><img ng-src="{{movie.image}}"></div>
+		<div class="col-md-3 text-center title">{{movie.name}}</div>
+		<div class="col-md-3 text-center price">${{movie.salePrice}}</div>
+		<div class="col-md-3 text-center"><button class="btn-success">Add To Cart</button></div>
 	</div>
 </div>

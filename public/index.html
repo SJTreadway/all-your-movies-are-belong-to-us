@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html ng-app="storeApp">
 <head>
-	<title></title>
+	<title>All Your Movies Are Belong To Us</title>
+	<!-- Tab Icon -->
+	<link rel="shortcut icon" href="/images/ticket.png">
 	<!-- Bootstrap CDN -->
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<!-- Custom CSS -->
@@ -14,16 +16,14 @@
 	</div>
 	<br>
 	<ui-view></ui-view>
-
+	<footer class="footer white text-center">
+		<h6>&copy;2015 Steven Treadway</h6>
+	</footer>
 
 	<!-- Angular -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 	<!-- Angular Router -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
-	<!-- jQuery -->
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<!-- ngGrid -->
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.11/ng-grid.min.js"></script>
 	<!-- App.JS -->
 	<script type="text/javascript" src="js/app.js"></script>
 	<!-- Controllers -->
@@ -31,6 +31,7 @@
 	<script type="text/javascript" src="/views/home/homeCtrl.js"></script>
 	<script type="text/javascript" src="/views/signup/signupCtrl.js"></script>
 	<script type="text/javascript" src="/views/login/loginCtrl.js"></script>
+	<script type="text/javascript" src="/views/movies/moviesCtrl.js"></script>
 	<!-- Services -->
 	<script type="text/javascript" src="js/mainService.js"></script>
 </body>
