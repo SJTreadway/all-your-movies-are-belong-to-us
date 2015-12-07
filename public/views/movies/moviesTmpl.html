@@ -1,10 +1,30 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-
-  </body>
-</html>
+<div class="container">
+	<div class="text-center">
+		<a ui-sref="home"><button class="btn-primary glyphicon glyphicon-home">Home</button></a>
+		<a ui-sref="movies"><button class="btn-primary glyphicon glyphicon-film">Movies</button></a>
+		<a ui-sref="user"><button class="btn-primary glyphicon glyphicon-user">Account</button></a>
+		<a ui-sref="cart"><button class="btn-primary glyphicon glyphicon-shopping-cart">Cart</button></a>
+		<a ui-sref="login"><button class="btn-danger glyphicon glyphicon-log-out">Logout</button></a>
+	</div>
+<hr>
+	<div class="text-center">
+		<input type='text' placeholder="Search for a movie" ng-model="title">
+		<button class="btn-primary">Search</button>
+	</div>
+<br>
+<br>
+	<!-- <div class="panel panel-default">
+    	<div class="panel-heading"> Your Search Results:</div>
+   		<div class="gridStyle" ng-grid="gridOptions" swap-image="defaultInfo.search"></div>
+    </div> -->
+	<div>
+		<div ng-repeat="movie in movies" class="white col-md-2">
+			<img ng-src="{{movie.image}}"><br>
+			{{movie.name}}<br>
+			{{movie.artistName}}<br>
+			{{movie.genre}}<br>
+			{{movie.salePrice}}</br>
+			<button class="btn-warning">Add To Cart</button>
+		</div>
+	</div>
+</div>

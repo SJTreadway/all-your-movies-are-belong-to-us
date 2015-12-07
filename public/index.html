@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="storeApp">
 <head>
 	<title></title>
 	<!-- Bootstrap CDN -->
@@ -7,20 +7,31 @@
 	<!-- Custom CSS -->
 	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
-<body>
+<body ng-controller="mainCtrl">
 
-<div class="container">
-	<h1 class="text-center">All Your Movies Are Belong To Us</h1>
-</div>
+	<div class="container">
+		<h1 class="text-center white">All Your Movies Are Belong To Us</h1>
+	</div>
+	<br>
+	<ui-view></ui-view>
+
+
 	<!-- Angular -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 	<!-- Angular Router -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+	<!-- jQuery -->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<!-- ngGrid -->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.11/ng-grid.min.js"></script>
 	<!-- App.JS -->
 	<script type="text/javascript" src="js/app.js"></script>
-	<!-- Controller.JS -->
+	<!-- Controllers -->
 	<script type="text/javascript" src="js/mainCtrl.js"></script>
-	<!-- Service.JS -->
+	<script type="text/javascript" src="/views/home/homeCtrl.js"></script>
+	<script type="text/javascript" src="/views/signup/signupCtrl.js"></script>
+	<script type="text/javascript" src="/views/login/loginCtrl.js"></script>
+	<!-- Services -->
 	<script type="text/javascript" src="js/mainService.js"></script>
 </body>
 </html>

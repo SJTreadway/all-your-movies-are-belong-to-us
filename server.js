@@ -7,12 +7,12 @@ var express = require('express'),
 	CartController = require('./server-assets/controllers/cartCtrl.js'),
 	MoviesController = require('./server-assets/controllers/moviesCtrl.js'),
 	port = 9001,
+	apiKey = 'xznvr6m97fwgs2ycfhyajrwp',
 	app = express();
 
 mongoose.Promise = require('q').Promise;
 
 app.use(cors(), bodyParser.json(), express.static(__dirname+'/public'));
-
 
 
 // // User endpoints
@@ -25,10 +25,10 @@ app.use(cors(), bodyParser.json(), express.static(__dirname+'/public'));
 // app.delete('/api/cart/:id', CartController.removeItem);
 
 // Movies endpoints
-app.get('/api/Movies', MoviesController.getMovies);
-// app.post('/api/Movies', MoviesController.addMovies);
-// app.put('/api/Movies/:id', MoviesController.editMovies);
-// app.delete('/api/Movies/:id', MoviesController.archiveMovies);
+app.get('/api/movies', MoviesController.getMovies);
+// app.post('/api/movies', MoviesController.addMovies);
+// app.put('/api/movies/:id', MoviesController.editMovies);
+// app.delete('/api/movies/:id', MoviesController.archiveMovies);
 
 app.listen(port, function() {
 	console.log('Listening on port:', port);
