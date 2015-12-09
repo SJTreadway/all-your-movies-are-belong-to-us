@@ -13,7 +13,7 @@
       resolve: {
         newReleases: function(mainService) {
           return mainService.getMovies()
-        }
+        },
       }
     }).state('movies', {
       url: '/movies',

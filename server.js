@@ -16,19 +16,17 @@ app.use(cors(), bodyParser.json(), express.static(__dirname+'/public'));
 
 
 // // User endpoints
-// app.post('/api/user', UserController.addUser);
-// app.get('/api/user', UserController.getUser);
-//
+app.post('/api/user', UserController.addUser);
+app.get('/api/user', UserController.getUser);
+
 // // Cart endpoints
-// app.post('/api/cart/:id', CartController.addItem);
+app.get('/api/cart/:id', CartController.getItems);
+app.post('/api/cart/:id', CartController.addItem);
 // app.put('/api/cart/:id', CartController.editCart);
 // app.delete('/api/cart/:id', CartController.removeItem);
 
 // Movies endpoints
 app.get('/api/movies', MovieController.getMovies);
-// app.post('/api/movies', MovieController.addMovies);
-// app.put('/api/movies/:id', MovieController.editMovies);
-// app.delete('/api/movies/:id', MovieController.archiveMovies);
 
 app.listen(port, function() {
 	console.log('Listening on port:', port);
