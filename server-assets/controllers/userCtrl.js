@@ -20,8 +20,8 @@ module.exports = {
 		// 	bcrypt.compareSync(res[0].password, hash);
 			
 		// });
-		User.find().exec().then(function(users) {
-			return res.json(users);
+		User.find(req.query).exec().then(function(user) {
+			return res.json(user);
 		}).catch(function(err) {
 			return res.status(500).send(err);
 		});

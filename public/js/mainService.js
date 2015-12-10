@@ -18,10 +18,10 @@
 			});
 		};
 
-		this.getUser = function() {
+		this.getUser = function(email) {
 			return $http({
 				method: 'GET',
-				url: '/api/user'
+				url: '/api/user?email=' + email
 			}).then(function(res) {
 				return res.data;
 			}, function(err) {
