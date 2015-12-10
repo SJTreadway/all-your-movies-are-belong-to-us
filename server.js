@@ -7,7 +7,6 @@ var express = require('express'),
 	CartController = require('./server-assets/controllers/cartCtrl.js'),
 	MovieController = require('./server-assets/controllers/movieCtrl.js'),
 	port = 9001,
-	apiKey = 'xznvr6m97fwgs2ycfhyajrwp',
 	app = express();
 
 mongoose.Promise = require('q').Promise;
