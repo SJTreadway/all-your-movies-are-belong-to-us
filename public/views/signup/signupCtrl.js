@@ -13,7 +13,8 @@
 				if (flag) {
 					alert('Email is already in use. Please sign in.');
 				} else {
-					return mainService.addUser($scope.newUser).then(function() {
+					return mainService.addUser($scope.newUser).then(function(user) {
+						$scope.$parent.currentUser = user
 						return $state.go('home');
 					});
 				}

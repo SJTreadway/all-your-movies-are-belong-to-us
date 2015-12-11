@@ -44,14 +44,13 @@
 			});
 		};
 
-		this.addItems = function(user, item) {
-			console.log(user);
-			console.log(item);
+		this.addItem = function(user, item) {
 			return $http({
-				method: 'GET',
-				url: '/api/cart/' + user._id,
+				method: 'POST',
+				url: '/api/cart/' + user[0]._id,
 				data: item
 			}).then(function(res) {
+				console.log('data', res.data)
 				return res.data;
 			}, function(err) {
 				console.log(err);

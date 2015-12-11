@@ -4,7 +4,7 @@ var User = require('../models/user');
 module.exports = {
 	addUser: function(req, res) {
 		var newUser = new User(req.body);
-		newUser.save().then(function(user) {
+		return newUser.save().then(function(user) {
 			return res.json(user);
 		}).catch(function(err) {
 			return res.status(500).send(err);

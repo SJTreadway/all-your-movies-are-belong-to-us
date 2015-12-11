@@ -2,12 +2,13 @@
 	angular.module('storeApp').controller('loginCtrl', function($scope, $state, mainService) {
 
 		$scope.loginUser = function() {
-			return mainService.getUser($scope.user.email).then(function(res) {
+			return mainService.getUser($scope.user.email).then(function(user) {
 				var flag = false;
-				for (var i = 0; i < res.length; i++) {
-					if ($scope.user.email === res[i].email && $scope.user.password === res[i].password) {
+				for (var i = 0; i < user.length; i++) {
+					if ($scope.user.email === user[i].email && $scope.user.password === user[i].password) {
+						$scope.$parent.currentUser = user;
 						return $state.go('home');
-					} else if ($scope.user.email === res[i].email && $scope.user.password !== res[i].password) {
+					} else if ($scope.user.email === user[i].email && $scope.user.password !== user[i].password) {
 						flag = true;
 					}
 				}
