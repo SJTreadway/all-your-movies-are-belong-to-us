@@ -3,9 +3,18 @@
 
 		$scope.newReleases = newReleases;
 
+		var getAuthedUser = function() {
+			return mainService.getAuthedUser().then(function(user) {
+				$scope.user = user;
+			});
+		};
+
+		getAuthedUser();
+
 		$scope.addItem = function(item) {
-			return mainService.addItem($scope.currentUser, item).then(function(res) {
-			console.log('controller res:', res);
+			getAuthedUser();
+			return mainService.addItem($scope.user, item).then(function(res) {
+				console.log('controller res:', res);
 			});
 	    };
 

@@ -1,5 +1,7 @@
 (function() {
-	angular.module('storeApp').service('mainService', function($http) {
+	angular.module('storeApp').service('mainService', function($http, $q, $rootScope) {
+
+		var user;
 
 		this.getMovies = function(title) {
 			var query;
@@ -18,36 +20,41 @@
 			});
 		};
 
-		this.getUser = function(email) {
-			return $http({
-				method: 'GET',
-				url: '/api/user?email=' + email
-			}).then(function(res) {
-				return res.data;
-			}, function(err) {
-				console.log(err);
-			});
+		this.addUser = function(newUser){
+			console.log(newUser)
+			if (!newUser) {
+				alert('Please sign up.');
+			}
+		    return $http({
+		      method: 'POST',
+		      url: '/api/user',
+		      data: newUser
+		    });
 		};
 
-		this.addUser = function(user) {
-			return $http({
-				method: 'POST',
-				url: '/api/user',
-				data: {
-					email: user.email,
-					password: user.password
-				}
-			}).then(function(res) {
-				return res.data;
-			}, function(err) {
-				console.log(err);
-			});
-		};
+		this.getAuthedUser = function(){
+		    var dfd = $q.defer()
+		    if(user){
+		      dfd.resolve(user);
+		    } else {
+		      $http({
+		        method: 'GET',
+		        url: '/api/user/currentUser'
+		      }).then(function(res){
+		        user = res.data;
+		        console.log('Result getting the logged in user', res);
+		        dfd.resolve(res.data);
+		      })
+		    }
+		    return dfd.promise;
+		  };
 
 		this.addItem = function(user, item) {
+			console.log('user', user);
+			console.log('item', item);
 			return $http({
 				method: 'POST',
-				url: '/api/cart/' + user[0]._id,
+				url: '/api/cart/' + user._id,
 				data: item
 			}).then(function(res) {
 				console.log('data', res.data)
@@ -56,5 +63,30 @@
 				console.log(err);
 			});
 		};
+
+		this.loginUser = function(credentials){
+		    var dfd = $q.defer()
+		    $http({
+		      method: 'POST',
+		      url: '/api/auth/local',
+		      data: credentials
+		    }).then(function(res){
+		      console.log('Result from user login', res)
+		      dfd.resolve(res.data);
+		    })
+		    return dfd.promise
+		  };
+
+		this.logoutUser = function() {
+			return $http({
+				method: 'GET',
+				url: '/api/auth/logout'
+			}).then(function() {
+				console.log('Success');
+			}, function(err) {
+				console.log(err);
+			});
+		};
+
 	});
 })();

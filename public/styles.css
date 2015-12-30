@@ -9,6 +9,10 @@ body {
 	background-repeat: no-repeat;
 	margin-bottom: 5%;
 }
+img {
+	width: 50%;
+	height: 50%;
+}
 .white {
 	color: white;
 }

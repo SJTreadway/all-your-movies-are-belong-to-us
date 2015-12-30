@@ -2,23 +2,18 @@
 	angular.module('storeApp').controller('signupCtrl', function($scope, mainService, $state) {
 
 		$scope.addUser = function() {
-			return mainService.getUser($scope.newUser.email).then(function(res) {
-				$scope.users = res;
-				var flag = false;
-				for (var i = 0; i < $scope.users.length; i++) {
-					if ($scope.newUser.email === $scope.users[i].email) {
-						flag = true;	
-					}
-				};
-				if (flag) {
-					alert('Email is already in use. Please sign in.');
-				} else {
-					return mainService.addUser($scope.newUser).then(function(user) {
-						$scope.$parent.currentUser = user
-						return $state.go('home');
-					});
-				}
-			});				
+			return mainService.addUser({
+		    	username: $scope.username,
+		    	password: $scope.password
+		    }).then(function(res){
+		    	mainService.getAuthedUser().then(function() {
+			    	$state.go('home');
+		    	});
+		    }).catch(function(err) {
+		    	if (err.status) {
+		    		$scope.error = "Sorry, that user already exists.";
+		    	}
+		    });
 		};
 
 	});

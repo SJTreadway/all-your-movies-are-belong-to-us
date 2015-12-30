@@ -1,37 +1,40 @@
 var mongoose = require('mongoose'),
-	bcrypt = require('bcrypt');
+	bcrypt = require('bcrypt'),
+	q = require('q');
 
-var UserSchema = new mongoose.Schema({
-	email: {type: String, required: true, minlength: 6},
-	password: {type: String, required: true},
-	cart: {type: mongoose.Schema.Types.ObjectId, ref: 'Cart'},
-	total_price: {type: Number, min: 0, default: 0}
+var schema = new mongoose.Schema({
+	username: String,
+	password: String,
+	roles: [
+		{
+			type: String, 
+			enum: ['normal', 'admin', 'moderator'],
+			default: 'normal'
+		}
+	]
 });
 
-// UserSchema.pre('save', function(next) {
-	
-// 	var user = this;
+schema.methods.verifyPassword = function(givenPassword) {
+	var dfd = q.defer();
+	bcrypt.compare(givenPassword, this.password, function(err, result) {
+		if (result) {
+			dfd.resolve(true);
+		}
+		else {
+			dfd.reject(false);
+		}
+	});
+	return dfd.promise;
+};
 
-// 	user.email = user.email.toLowerCase();
+schema.pre('save', function(next) {
+	var user = this;
+	bcrypt.genSalt(12, function(err, salt) {
+		bcrypt.hash(user.password, salt, function(err, hash) {
+			user.password = hash;
+			next();
+		})
+	});
+});
 
-// 	if (user.isModified('password')) {
-// 		//12 means secure
-// 		bcrypt.genSalt(12, function(err, salt) {
-// 			if (err) {
-// 				next(err);
-// 			}
-// 			bcrypt.hash(user.password, salt, function(err, hash) {
-// 				if (err) {
-// 					return next(err);
-// 				}
-// 				user.password = hash;
-// 				next();
-// 			});
-// 		});
-// 	}
-// 	else {
-// 		next();
-// 	}
-// });
-
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', schema);

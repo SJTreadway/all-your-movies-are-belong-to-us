@@ -3,8 +3,8 @@
 		
 		$scope.clicked = false;
 		
-		$scope.getMovies = function(title) {
-			return mainService.getMovies(title).then(function(res) {
+		$scope.getMovies = function() {
+			return mainService.getMovies($scope.title).then(function(res) {
 			    $scope.clicked = true;
 			    $scope.movies = res;
 			});
