@@ -1,20 +1,21 @@
 var mongoose = require('mongoose'),
+	Cart = require('./cart'),
 	bcrypt = require('bcrypt'),
 	q = require('q');
 
-var schema = new mongoose.Schema({
-	username: String,
+var userSchema = new mongoose.Schema({
+	username: {type: String, required: true, lowercase: true, index: true},
 	password: String,
-	roles: [
-		{
-			type: String, 
-			enum: ['normal', 'admin', 'moderator'],
-			default: 'normal'
-		}
-	]
+	cart: {
+		items: [{
+			product: String,
+			quantity: {type: Number, default: 1, min: 0}
+		}],
+		updated: {type: Date},
+	}
 });
 
-schema.methods.verifyPassword = function(givenPassword) {
+userSchema.methods.verifyPassword = function(givenPassword) {
 	var dfd = q.defer();
 	bcrypt.compare(givenPassword, this.password, function(err, result) {
 		if (result) {
@@ -27,7 +28,7 @@ schema.methods.verifyPassword = function(givenPassword) {
 	return dfd.promise;
 };
 
-schema.pre('save', function(next) {
+userSchema.pre('save', function(next) {
 	var user = this;
 	bcrypt.genSalt(12, function(err, salt) {
 		bcrypt.hash(user.password, salt, function(err, hash) {
@@ -37,4 +38,9 @@ schema.pre('save', function(next) {
 	});
 });
 
-module.exports = mongoose.model('User', schema);
+userSchema.pre('save', function(next) {
+	this.cart.updated = new Date();
+	next();
+});
+
+module.exports = mongoose.model('User', userSchema);

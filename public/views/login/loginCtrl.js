@@ -6,7 +6,8 @@
 		    	username: $scope.username,
 		    	password: $scope.password
 		    }).then(function(){
-		      $scope.credentials = {};
+		      $scope.$parent.user = $scope.username;
+		      console.log($scope.$parent.user)
 		      $state.go('home');
 		    });
 		  };

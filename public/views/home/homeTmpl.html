@@ -4,7 +4,7 @@
 		<a ui-sref="movies"><button class="btn-primary glyphicon glyphicon-film">Movies</button></a>
 		<a ui-sref="user"><button class="btn-primary glyphicon glyphicon-user">Account</button></a>
 		<a ui-sref="cart"><button class="btn-primary glyphicon glyphicon-shopping-cart">Cart</button></a>
-		<a ui-sref="login"><button class="btn-danger glyphicon glyphicon-log-out" ng-click="logoutUser()">Logout</button></a>
+		<a ui-sref="logout"><button class="btn-danger glyphicon glyphicon-log-out" ng-click="logoutUser()">Logout</button></a>
 	</div>
 <hr>
 <h2 class="text-center white underline">New Releases</h1>
@@ -21,5 +21,5 @@
 	<div class="col-md-3 text-center"><img ng-src="{{newRelease.image}}"></div>
 	<div class="col-md-3 text-center title">{{newRelease.name}}</div>
 	<div class="col-md-3 text-center price">${{newRelease.salePrice}}</div>
-	<div class="col-md-3 text-center"><button class="btn-success" ng-click="addItem(newRelease)">Add To Cart</button></div>
+	<div class="col-md-3 text-center"><button class="btn-success" ng-click="addItem(user, newRelease)">Add To Cart</button></div>
 </div>

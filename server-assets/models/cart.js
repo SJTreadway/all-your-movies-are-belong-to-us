@@ -1,13 +1,18 @@
 var mongoose = require('mongoose');
 
-var CartSchema = new mongoose.Schema({
-	item: [{
-		image: {type: String, required: true},
-		name: {type: String, required: true},
-		price: {type: Number, required: true},
-		quantity: {type: Number, required: true, default: 1, min: 0},
-	}],
-	user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+var cartSchema = new mongoose.Schema({
+	cart: {
+		items: [{
+			product: String,
+			quantity: {type: Number, default: 1, min: 0}
+		}],
+		updated: {type: Date},
+	}
 });
 
-module.exports = mongoose.model('Cart', CartSchema);
+cartSchema.pre('save', function(next) {
+	this.updated = new Date();
+	next();
+});
+
+module.exports = cartSchema;

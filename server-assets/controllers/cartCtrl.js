@@ -4,40 +4,69 @@ var Cart = require('../models/cart'),
 
 module.exports = {
 	addItem: function(req, res) {
-		if(!req.session.cart) {
-			req.session.cart = [];
-		}
-		req.session.cart.push(req.body);
-		return res.status(200).json(req.session.cart);
-		// User.findById(req.params.id).exec().then(function(user) {
-		// 	if (!user.cart) {
-		// 		newCart = new Cart();
-		// 		newCart.user = user._id;
-		// 		newCart.item.push(req.body);
-		// 		return newCart.save().then(function(cart) {
-		// 			console.log(cart)
-		// 			user.cart = cart._id;
-		// 			return user.save();
-		// 		}).then(function(response) {
-		// 			return res.json(response);
-		// 		});
-		// 	}
-		// 	return Cart.findById(user.cart).exec(function(cart) {
-		// 		cart.items.push(req.body);
-		// 		return cart.save().then(function(result) {
-		// 			return res.json(result);
-		// 		});
-		// 	});
-		// }).catch(function(err) {
-		// 	return res.status(500).json(err);
-		// });
-	},
-
-	getItems: function(req, res) {
-		Cart.find(req.query).exec().then(function(cart) {
-			return res.json(cart);
-		}).catch(function(err) {
-			return res.status(500).send(err);
+		var user = req.session.user;
+		console.log(req.body)
+		var item = {
+			sku: req.body.sku,
+			image: req.body.image,
+			name: req.body.name,
+			price: req.body.salePrice
+		};
+		User.findById(user._id).exec().then(function(user) {
+			var items = user.cart.items,
+				flag = true;
+			for (var i = 0; i < items.length; i++) {
+				if (item.name === items[i].name) {
+					items[i].quantity++;
+					flag = false;
+				}
+			}
+			if (flag) {
+				items.push(item);
+			}
+			user.save().then(function(resu) {
+				return res.json(resu);
+			}).catch(function(err) {
+				console.log(err)
+				return res.status(500).json(err);
+			});
 		});
 	},
-}
+
+	editCart: function(req, res) {
+		User.findById(req.params.id).exec().then(function(user) {
+			user.cart = req.body;
+			var items = user.cart.items;
+			for (var i = 0; i < items.length; i++) {
+				if (req.body.quantity === 0) {
+					items.splice(i,1);
+					i--;
+				}
+			}
+			return user.save().then(function(resu) {
+				return res.json(resu);
+			}).catch(function(err) {
+				return res.json(err);
+			});
+		});
+	},
+
+	removeItem: function(req, res) {
+		User.findById(req.params.id).exec().then(function(user) {
+			var items = user.cart.items;
+			for (var i = 0; i < items.length; i++) {
+				if (req.body.item === items[i].product.toString()) {
+					items.splice(i,1);
+					i--;
+				}
+			}
+
+			return user.save().then(function(resu) {
+				return res.json(resu);
+			});
+		}).catch(function(err) {
+			return res.json(err);
+		});
+	},
+
+};

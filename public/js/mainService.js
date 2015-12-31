@@ -29,62 +29,40 @@
 		      method: 'POST',
 		      url: '/api/user',
 		      data: newUser
+		    }).then(function(res) {
+		    	return res.data;
 		    });
 		};
 
-		this.getAuthedUser = function(){
-		    var dfd = $q.defer()
-		    if(user){
-		      dfd.resolve(user);
-		    } else {
-		      $http({
-		        method: 'GET',
-		        url: '/api/user/currentUser'
-		      }).then(function(res){
-		        user = res.data;
-		        console.log('Result getting the logged in user', res);
-		        dfd.resolve(res.data);
-		      })
-		    }
-		    return dfd.promise;
-		  };
+		this.addItem = function(userId, item) {
+				return $http({
+					method: 'POST',
+					url: '/api/cart/' + userId,
+					data: item
+				}).then(function(res) {
+					return res.data;
+				})
+			};
 
-		this.addItem = function(user, item) {
-			console.log('user', user);
-			console.log('item', item);
-			return $http({
-				method: 'POST',
-				url: '/api/cart/' + user._id,
-				data: item
-			}).then(function(res) {
-				console.log('data', res.data)
-				return res.data;
-			}, function(err) {
-				console.log(err);
-			});
-		};
-
-		this.loginUser = function(credentials){
+		this.loginUser = function(user){
 		    var dfd = $q.defer()
 		    $http({
 		      method: 'POST',
-		      url: '/api/auth/local',
-		      data: credentials
+		      url: '/api/login',
+		      data: user
 		    }).then(function(res){
 		      console.log('Result from user login', res)
 		      dfd.resolve(res.data);
-		    })
+		    }, function(err) {
+		    	console.log(err);
+		    });
 		    return dfd.promise
 		  };
 
 		this.logoutUser = function() {
 			return $http({
 				method: 'GET',
-				url: '/api/auth/logout'
-			}).then(function() {
-				console.log('Success');
-			}, function(err) {
-				console.log(err);
+				url: '/api/logout'
 			});
 		};
 

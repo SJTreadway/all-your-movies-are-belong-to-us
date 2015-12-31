@@ -6,9 +6,7 @@
 		    	username: $scope.username,
 		    	password: $scope.password
 		    }).then(function(res){
-		    	mainService.getAuthedUser().then(function() {
-			    	$state.go('home');
-		    	});
+		    	$state.go('login');
 		    }).catch(function(err) {
 		    	if (err.status) {
 		    		$scope.error = "Sorry, that user already exists.";
