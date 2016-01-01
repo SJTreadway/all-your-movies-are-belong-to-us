@@ -35,28 +35,29 @@
 		};
 
 		this.addItem = function(userId, item) {
-				return $http({
-					method: 'POST',
-					url: '/api/cart/' + userId,
-					data: item
-				}).then(function(res) {
-					return res.data;
-				})
-			};
+			return $http({
+				method: 'POST',
+				url: '/api/cart/' + userId,
+				data: item
+			}).then(function(res) {
+				return res.data;
+			})
+		};
 
 		this.loginUser = function(user){
-		    var dfd = $q.defer()
-		    $http({
+		    return $http({
 		      method: 'POST',
 		      url: '/api/login',
 		      data: user
 		    }).then(function(res){
 		      console.log('Result from user login', res)
-		      dfd.resolve(res.data);
+		      return res.data;
 		    }, function(err) {
-		    	console.log(err);
+		    	if (err) {
+		    		console.log(err);
+			    	return;
+		    	}
 		    });
-		    return dfd.promise
 		  };
 
 		this.logoutUser = function() {

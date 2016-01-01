@@ -2,12 +2,16 @@
 	angular.module('storeApp').controller('loginCtrl', function($scope, $state, mainService) {
 
 		$scope.loginUser = function() {
-		    mainService.loginUser({
+		    return mainService.loginUser({
 		    	username: $scope.username,
 		    	password: $scope.password
-		    }).then(function(){
-		      $scope.$parent.user = $scope.username;
-		      console.log($scope.$parent.user)
+		    }).then(function(user){
+		    	if (!user) {
+		    		alert('Wrong email or password.');
+		    		return;
+		    	}
+		      $scope.$parent.user = user;
+		      console.log(user)
 		      $state.go('home');
 		    });
 		  };

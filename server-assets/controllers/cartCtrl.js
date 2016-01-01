@@ -4,6 +4,7 @@ var Cart = require('../models/cart'),
 
 module.exports = {
 	addItem: function(req, res) {
+		console.log(req.params)
 		var user = req.session.user;
 		console.log(req.body)
 		var item = {
@@ -12,7 +13,7 @@ module.exports = {
 			name: req.body.name,
 			price: req.body.salePrice
 		};
-		User.findById(user._id).exec().then(function(user) {
+		User.findById(req.params.id).exec().then(function(user) {
 			var items = user.cart.items,
 				flag = true;
 			for (var i = 0; i < items.length; i++) {
