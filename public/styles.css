@@ -22,7 +22,7 @@ img {
 a:hover, a:visited {
 	color: white;
 }
-.title, .price, .link {
+.title, .price, .quantity .link {
 	font-size: 1.3em;
 }
 .search {

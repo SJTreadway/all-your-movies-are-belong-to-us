@@ -13,12 +13,14 @@
 	<div class="col-md-3 white text-center"><h4 class="underline">Cover Art</h4></div>
 	<div class="col-md-3 white text-center"><h4 class="underline">Title</h4></div>
 	<div class="col-md-3 white text-center"><h4 class="underline">Price</h4></div>
+	<div class="col-md-3 white text-center"><h4 class="underline">Quantity</h4></div>
 </div>
 <div ng-repeat="item in items" class="white row" ng-hide="item.image === 'http://img.bbystatic.com/BestBuy_US/images/products/nonsku/default_movies_l.jpg'">
 	<br>
-	<div class="col-md-3 text-center"><img ng-src="{{item.image}}"></div>
-	<div class="col-md-3 text-center title">{{item.name}}</div>
-	<div class="col-md-3 text-center price">${{item.salePrice}}</div>
+	<div class="col-md-3 text-center"><img ng-src="{{item.product.image}}"></div>
+	<div class="col-md-3 text-center title">{{item.product.name}}</div>
+	<div class="col-md-3 text-center price">${{item.product.salePrice}}</div>
+	<div class="col-md-3 text-center quantity">{{item.quantity}}</div>
 </div>
 	<h3 class="text-center white">Total Price:</h3>
 </div>

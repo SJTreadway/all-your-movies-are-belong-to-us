@@ -35,7 +35,6 @@
 		};
 
 		this.addItem = function(userId, item) {
-			console.log(item)
 			return $http({
 				method: 'POST',
 				url: '/api/cart/' + userId,
@@ -43,7 +42,6 @@
 					product: item
 				}
 			}).then(function(res) {
-				console.log('service', res)
 				return res.data;
 			})
 		};
