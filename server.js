@@ -43,6 +43,7 @@ app.get('/api/logout', function(req, res) {
 
 /* Cart endpoints */
 app.post('/api/cart/:id', requireAuth, CartController.addItem);
+app.get('/api/cart/:id', requireAuth, CartController.getItems);
 app.put('/api/cart/:id', requireAuth, CartController.editCart);
 app.delete('/api/cart/:id', requireAuth, CartController.removeItem);
 

@@ -1,5 +1,5 @@
-var User = require('../models/user'),
-	bcrypt = require('bcrypt');
+var User = require('../models/user');
+	// bcrypt = require('bcrypt');
 
 module.exports = {
 	addUser: function(req, res) {
@@ -16,7 +16,7 @@ module.exports = {
 			if (!user) {
 				return res.status(400).end();
 			} else {
-				if (bcrypt.compareSync(req.body.password, user.password)) {
+				if (req.body.password === user.password) {
 					req.session.user = user;
 					return res.status(200).send(req.session.user);
 				} else {

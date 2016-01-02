@@ -11,7 +11,6 @@
 		    		return;
 		    	}
 		      $scope.$parent.user = user;
-		      console.log(user)
 		      $state.go('home');
 		    });
 		  };

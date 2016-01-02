@@ -21,7 +21,6 @@
 		};
 
 		this.addUser = function(newUser){
-			console.log(newUser)
 			if (!newUser) {
 				alert('Please sign up.');
 			}
@@ -45,6 +44,17 @@
 				return res.data;
 			})
 		};
+
+		this.getItems = function(userId) {
+			console.log('id', userId)
+			return $http({
+				method: 'GET',
+				url: '/api/cart/' + userId
+			}).then(function(items) {
+				console.log(items);
+				return items.data;
+			})
+		},
 
 		this.loginUser = function(user){
 		    return $http({

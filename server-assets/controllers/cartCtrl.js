@@ -27,6 +27,16 @@ module.exports = {
 		});
 	},
 
+	getItems: function(req, res) {
+		User.findById(req.params.id).exec().then(function(user) {
+			console.log(user.cart.items);
+			return res.json(user.cart.items);
+		}).catch(function(err) {
+			console.log(err);
+			return res.status(500).json(err);
+		});
+	},
+
 	editCart: function(req, res) {
 		User.findById(req.params.id).exec().then(function(user) {
 			user.cart = req.body;
