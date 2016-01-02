@@ -9,5 +9,13 @@
 			    $scope.movies = res;
 			});
 		};
+
+		$scope.addItem = function(item) {
+			mainService.addItem($scope.$parent.user._id, item).then(function(res) {
+				$scope.$parent.items = res.cart.items;
+				alert('Movie has been added to your cart!');
+			});
+	    };
+
 	});
 })();

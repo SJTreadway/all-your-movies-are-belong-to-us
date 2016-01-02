@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="text-center">
 		<a ui-sref="home"><button class="btn-primary glyphicon glyphicon-home selected">Home</button></a>
-		<a ui-sref="movies"><button class="btn-primary glyphicon glyphicon-film">Movies</button></a>
+		<a ui-sref="movies"><button class="btn-primary glyphicon glyphicon-film">Search</button></a>
 		<a ui-sref="cart"><button class="btn-primary glyphicon glyphicon-shopping-cart" ng-click="getItems()">Cart</button></a>
 		<a ui-sref="logout"><button class="btn-danger glyphicon glyphicon-log-out" ng-click="logoutUser()">Logout</button></a>
 	</div>
@@ -19,6 +19,6 @@
 	<br>
 	<div class="col-md-3 text-center"><img ng-src="{{newRelease.image}}"></div>
 	<div class="col-md-3 text-center title">{{newRelease.name}}</div>
-	<div class="col-md-3 text-center price">${{newRelease.salePrice}}</div>
+	<div class="col-md-3 text-center price">{{newRelease.salePrice | currency}}</div>
 	<div class="col-md-3 text-center"><button class="btn-success" ng-click="addItem(newRelease)">Add To Cart</button></div>
 </div>

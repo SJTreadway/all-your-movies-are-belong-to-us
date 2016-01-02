@@ -12,9 +12,17 @@
 
 	    $scope.getItems = function() {
 			mainService.getItems($scope.user._id).then(function(items) {
-				console.log(items)
 				$scope.items = items;
 			})
+		};
+
+		$scope.getTotal = function(){
+		    var total = 0;
+		    for(var i = 0; i < $scope.items.length; i++){
+		        var product = $scope.items[i];
+		        total += (product.product.salePrice * product.quantity);
+		    }
+		    return total;
 		};
 
 

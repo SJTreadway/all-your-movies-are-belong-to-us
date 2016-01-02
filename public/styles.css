@@ -22,8 +22,11 @@ img {
 a:hover, a:visited {
 	color: white;
 }
-.title, .price, .quantity .link {
+.title, .price, .quantity, .link {
 	font-size: 1.3em;
+}
+.remove {
+	width: 20%;
 }
 .search {
 	width: 20%;

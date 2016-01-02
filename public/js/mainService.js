@@ -46,7 +46,6 @@
 		};
 
 		this.getItems = function(userId) {
-			console.log('id', userId)
 			return $http({
 				method: 'GET',
 				url: '/api/cart/' + userId
@@ -54,6 +53,23 @@
 				console.log(items);
 				return items.data;
 			})
+		},
+
+		this.removeItem = function(userId, movie) {
+			return $http({
+				method: 'DELETE',
+				url: '/api/cart/' + userId,
+				data: movie
+			}).then(function(res) {
+				console.log(222222, res)
+			})
+		},
+
+		this.emptyCart = function(userId) {
+			return $http({
+				method: 'DELETE',
+				url: '/api/cart/' + userId
+			});
 		},
 
 		this.loginUser = function(user){

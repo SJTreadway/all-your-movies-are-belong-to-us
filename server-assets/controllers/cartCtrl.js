@@ -29,10 +29,8 @@ module.exports = {
 
 	getItems: function(req, res) {
 		User.findById(req.params.id).exec().then(function(user) {
-			console.log(user.cart.items);
 			return res.json(user.cart.items);
 		}).catch(function(err) {
-			console.log(err);
 			return res.status(500).json(err);
 		});
 	},
@@ -57,6 +55,7 @@ module.exports = {
 
 	removeItem: function(req, res) {
 		User.findById(req.params.id).exec().then(function(user) {
+			console.log(user)
 			var items = user.cart.items;
 			for (var i = 0; i < items.length; i++) {
 				if (req.body.item === items[i].product.toString()) {
@@ -64,7 +63,17 @@ module.exports = {
 					i--;
 				}
 			}
+			return user.save().then(function(resu) {
+				return res.json(resu);
+			});
+		}).catch(function(err) {
+			return res.json(err);
+		});
+	},
 
+	emptyCart: function(req, res) {
+		User.findById(req.params.id).exec().then(function(user) {
+			user.cart.items = [];
 			return user.save().then(function(resu) {
 				return res.json(resu);
 			});

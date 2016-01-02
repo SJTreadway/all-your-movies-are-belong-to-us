@@ -12,6 +12,10 @@
       url: '/logout',
       templateUrl: '../views/logout/logout.html'
     })
+    .state('checkout', {
+      url: '/checkout',
+      templateUrl: '../views/checkout/checkoutTmpl.html'
+    })
     .state('home', {
       url: '/home',
       templateUrl: '../views/home/homeTmpl.html',

@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="text-center">
 		<a ui-sref="home"><button class="btn-primary glyphicon glyphicon-home">Home</button></a>
-		<a ui-sref="movies"><button class="btn-primary glyphicon glyphicon-film">Movies</button></a>
+		<a ui-sref="movies"><button class="btn-primary glyphicon glyphicon-film">Search</button></a>
 		<a ui-sref="cart"><button class="btn-primary glyphicon glyphicon-shopping-cart selected">Cart</button></a>
 		<a ui-sref="logout"><button class="btn-danger glyphicon glyphicon-log-out" ng-click="logoutUser()">Logout</button></a>
 	</div>
@@ -10,17 +10,24 @@
 <br>
 <br>
 <div class="row">
-	<div class="col-md-3 white text-center"><h4 class="underline">Cover Art</h4></div>
-	<div class="col-md-3 white text-center"><h4 class="underline">Title</h4></div>
-	<div class="col-md-3 white text-center"><h4 class="underline">Price</h4></div>
-	<div class="col-md-3 white text-center"><h4 class="underline">Quantity</h4></div>
+	<div class="col-md-2 white text-center"><h4 class="underline">Cover Art</h4></div>
+	<div class="col-md-2 white text-center"><h4 class="underline">Title</h4></div>
+	<div class="col-md-2 white text-center"><h4 class="underline">Price</h4></div>
+	<div class="col-md-2 white text-center"><h4 class="underline">Quantity</h4></div>
+	<div class="col-md-4 white text-center"><h4 class="underline">Remove</h4></div>
+
 </div>
 <div ng-repeat="item in items" class="white row" ng-hide="item.image === 'http://img.bbystatic.com/BestBuy_US/images/products/nonsku/default_movies_l.jpg'">
 	<br>
-	<div class="col-md-3 text-center"><img ng-src="{{item.product.image}}"></div>
-	<div class="col-md-3 text-center title">{{item.product.name}}</div>
-	<div class="col-md-3 text-center price">${{item.product.salePrice}}</div>
-	<div class="col-md-3 text-center quantity">{{item.quantity}}</div>
+	<div class="col-md-2 text-center"><img ng-src="{{item.product.image}}"></div>
+	<div class="col-md-2 text-center title">{{item.product.name}}</div>
+	<div class="col-md-2 text-center price">{{item.product.salePrice | currency}}</div>
+	<div class="col-md-2 text-center quantity">{{item.quantity}}</div>
+	<div class="text-center col-md-4"><button class="btn-danger remove" ng-click="removeItem(item)">Remove</button></div>
 </div>
-	<h3 class="text-center white">Total Price:</h3>
+<hr>
+<div class="text-center">
+	<h3 class="white">Total Price: {{ getTotal() | currency }}</h3>
+	<button class="btn btn-success" ng-click="emptyCart()">Checkout</button>
+</div>
 </div>
