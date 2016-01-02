@@ -7,7 +7,7 @@
 		    	password: $scope.password
 		    }).then(function(user){
 		    	if (!user) {
-		    		alert('Wrong email or password.');
+		    		alert('Wrong username or password.');
 		    		return;
 		    	}
 		      $scope.$parent.user = user;

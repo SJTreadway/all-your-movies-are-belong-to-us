@@ -36,10 +36,6 @@
       url: '/signup',
       templateUrl: '../views/signup/signupTmpl.html',
       controller: 'signupCtrl'
-    })
-    .state('user', {
-      url: '/user',
-      templateUrl: '../views/user/userTmpl.html'
     });
   });
 })();

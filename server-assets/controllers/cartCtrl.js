@@ -4,28 +4,21 @@ var Cart = require('../models/cart'),
 
 module.exports = {
 	addItem: function(req, res) {
-		console.log(req.params)
-		var user = req.session.user;
-		console.log(req.body)
-		var item = {
-			sku: req.body.sku,
-			image: req.body.image,
-			name: req.body.name,
-			price: req.body.salePrice
-		};
+		console.log(11111, req.body.product)
 		User.findById(req.params.id).exec().then(function(user) {
 			var items = user.cart.items,
 				flag = true;
 			for (var i = 0; i < items.length; i++) {
-				if (item.name === items[i].name) {
+				if (req.body.product.name === items[i].product.name) {
 					items[i].quantity++;
 					flag = false;
 				}
 			}
 			if (flag) {
-				items.push(item);
+				items.push(req.body);
 			}
-			user.save().then(function(resu) {
+			return user.save().then(function(resu) {
+				console.log('resu', resu)
 				return res.json(resu);
 			}).catch(function(err) {
 				console.log(err)

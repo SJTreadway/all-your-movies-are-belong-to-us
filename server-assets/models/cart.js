@@ -1,13 +1,12 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+	Movie = require('./movie');
 
 var cartSchema = new mongoose.Schema({
-	cart: {
-		items: [{
-			product: String,
-			quantity: {type: Number, default: 1, min: 0}
-		}],
-		updated: {type: Date},
-	}
+	items: [{
+		product: { type: Object, required: true },
+		quantity: {type: Number, default: 1, min: 0}
+	}],
+	updated: {type: Date},
 });
 
 cartSchema.pre('save', function(next) {

@@ -1,18 +1,18 @@
 var mongoose = require('mongoose'),
-	Cart = require('./cart'),
+	Movie = require('./movie'),
 	bcrypt = require('bcrypt'),
 	q = require('q');
 
 var userSchema = new mongoose.Schema({
-	username: {type: String, required: true, lowercase: true, index: true},
-	password: String,
+	username: { type: String, required: true, lowercase: true, index: true },
+	password: { type: String, required: true },
 	cart: {
-		items: [{
-			product: String,
-			quantity: {type: Number, default: 1, min: 0}
-		}],
+			items: [{
+				product: {type: Object, required: true},
+				quantity: {type: Number, default: 1, min: 0}
+			}],
 		updated: {type: Date},
-	}
+	},
 });
 
 userSchema.methods.verifyPassword = function(givenPassword) {
