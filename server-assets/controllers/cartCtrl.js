@@ -4,7 +4,6 @@ var Cart = require('../models/cart'),
 
 module.exports = {
 	addItem: function(req, res) {
-		console.log(11111, req.body.product)
 		User.findById(req.params.id).exec().then(function(user) {
 			var items = user.cart.items,
 				flag = true;
@@ -18,7 +17,6 @@ module.exports = {
 				items.push(req.body);
 			}
 			return user.save().then(function(resu) {
-				console.log('resu', resu)
 				return res.json(resu);
 			}).catch(function(err) {
 				console.log(err)
@@ -54,11 +52,12 @@ module.exports = {
 	},
 
 	removeItem: function(req, res) {
+		console.log('body', req.body.product)
 		User.findById(req.params.id).exec().then(function(user) {
-			console.log(user)
 			var items = user.cart.items;
 			for (var i = 0; i < items.length; i++) {
-				if (req.body.item === items[i].product.toString()) {
+				console.log('items', items[i].product)
+				if (req.body.product.sku === items[i].product.sku) {
 					items.splice(i,1);
 					i--;
 				}

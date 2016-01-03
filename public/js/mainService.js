@@ -56,8 +56,9 @@
 		},
 
 		this.removeItem = function(userId, movie) {
+			console.log('MOVIE', movie)
 			return $http({
-				method: 'DELETE',
+				method: 'PUT',
 				url: '/api/cart/' + userId,
 				data: movie
 			}).then(function(res) {
