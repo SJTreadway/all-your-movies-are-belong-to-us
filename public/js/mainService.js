@@ -75,7 +75,6 @@
 		      url: '/api/login',
 		      data: user
 		    }).then(function(res){
-		      console.log('Result from user login', res)
 		      return res.data;
 		    }, function(err) {
 		    	if (err) {

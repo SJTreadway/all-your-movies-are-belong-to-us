@@ -8,8 +8,9 @@ var express = require('express'),
 	UserController = require('./server-assets/controllers/userCtrl.js'),
 	CartController = require('./server-assets/controllers/cartCtrl.js'),
 	MovieController = require('./server-assets/controllers/movieCtrl.js'),
-	mongoUri = 'mongodb://localhost:27017/personal-project',
-	port = 8080,
+	mongoUsername = require('./server-assets/middleware/username'),
+	mongoUri =  'mongodb://' + mongoUsername + '@ds037415.mongolab.com:37415/mongo',
+	port = process.env.PORT || 8080,
 	app = express();
 
 mongoose.Promise = require('q').Promise;
