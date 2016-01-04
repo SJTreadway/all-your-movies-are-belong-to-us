@@ -8,8 +8,7 @@ var express = require('express'),
 	UserController = require('./server-assets/controllers/userCtrl.js'),
 	CartController = require('./server-assets/controllers/cartCtrl.js'),
 	MovieController = require('./server-assets/controllers/movieCtrl.js'),
-	mongoUsername = require('./server-assets/middleware/username'),
-	mongoUri =  'mongodb://' + mongoUsername + '@ds037415.mongolab.com:37415/mongo',
+	mongoUri = 'mongodb://localhost/personal-project',
 	port = process.env.PORT || 8080,
 	app = express();
 
