@@ -19,7 +19,6 @@ module.exports = {
 			return user.save().then(function(resu) {
 				return res.json(resu);
 			}).catch(function(err) {
-				console.log(err)
 				return res.status(500).json(err);
 			});
 		});
@@ -33,33 +32,17 @@ module.exports = {
 		});
 	},
 
-	editCart: function(req, res) {
-		User.findById(req.params.id).exec().then(function(user) {
-			user.cart = req.body;
-			var items = user.cart.items;
-			for (var i = 0; i < items.length; i++) {
-				if (req.body.quantity === 0) {
-					items.splice(i,1);
-					i--;
-				}
-			}
-			return user.save().then(function(resu) {
-				return res.json(resu);
-			}).catch(function(err) {
-				return res.json(err);
-			});
-		});
-	},
-
 	removeItem: function(req, res) {
-		console.log('body', req.body.product)
 		User.findById(req.params.id).exec().then(function(user) {
 			var items = user.cart.items;
 			for (var i = 0; i < items.length; i++) {
-				console.log('items', items[i].product)
 				if (req.body.product.sku === items[i].product.sku) {
-					items.splice(i,1);
-					i--;
+					if (items[i].quantity > 1) {
+						items[i].quantity--;
+					} else {
+						items.splice(i,1);
+						i--;
+					}
 				}
 			}
 			return user.save().then(function(resu) {

@@ -50,20 +50,16 @@
 				method: 'GET',
 				url: '/api/cart/' + userId
 			}).then(function(items) {
-				console.log(items);
 				return items.data;
 			})
 		},
 
 		this.removeItem = function(userId, movie) {
-			console.log('MOVIE', movie)
 			return $http({
 				method: 'PUT',
 				url: '/api/cart/' + userId,
 				data: movie
-			}).then(function(res) {
-				console.log(222222, res)
-			})
+			});
 		},
 
 		this.emptyCart = function(userId) {
