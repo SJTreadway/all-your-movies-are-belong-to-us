@@ -1,6 +1,6 @@
 var mongoose = require('mongoose'),
     request = require('request'),
-    key = require('../middleware/key'),
+    key = process.env.API_KEY || require('../middleware/key'),
     Movies = 'http://api.bestbuy.com/v1/products(type=\"movie\")?format=json&apiKey=' + key;
 	
 var query = '',
