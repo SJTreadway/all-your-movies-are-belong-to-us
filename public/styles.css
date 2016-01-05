@@ -24,7 +24,7 @@ a:hover, a:visited {
 	color: white;
 }
 .title, .price, .quantity, .link {
-	font-size: 1.5em;
+	font-size: 1.5em !important;
 }
 .remove {
 	width: 20%;
