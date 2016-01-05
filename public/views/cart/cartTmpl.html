@@ -1,9 +1,9 @@
 <div class="container">
 	<div class="text-center">
-		<a ui-sref="home"><button class="btn-primary glyphicon glyphicon-home">Home</button></a>
-		<a ui-sref="movies"><button class="btn-primary glyphicon glyphicon-film">Search</button></a>
-		<a ui-sref="cart"><button class="btn-primary glyphicon glyphicon-shopping-cart selected">Cart</button></a>
-		<a ui-sref="logout"><button class="btn-danger glyphicon glyphicon-log-out" ng-click="logoutUser()">Logout</button></a>
+		<a ui-sref="home"><button class="btn btn-primary glyphicon glyphicon-home">Home</button></a>
+		<a ui-sref="movies"><button class="btn btn-primary glyphicon glyphicon-film">Search</button></a>
+		<a ui-sref="cart"><button class="btn btn-primary glyphicon glyphicon-shopping-cart selected">Cart</button></a>
+		<a ui-sref="logout"><button class="btn btn-danger glyphicon glyphicon-log-out" ng-click="logoutUser()">Logout</button></a>
 	</div>
 <hr>
 <h2 class="text-center white">Cart</h1>
@@ -26,7 +26,7 @@
 	<div class="col-md-2 text-center title">{{item.product.name}}</div>
 	<div class="col-md-2 text-center price">{{item.product.salePrice | currency}}</div>
 	<div class="col-md-2 text-center quantity">{{item.quantity}}</div>
-	<div class="text-center col-md-2"><button class="btn-danger remove" ng-click="removeItem(item)">X</button></div>
+	<div class="text-center col-md-2"><button class="btn btn-danger remove" ng-click="removeItem(item)">X</button></div>
 	<div class="col-md-1"></div>
 </div>
 <hr>
