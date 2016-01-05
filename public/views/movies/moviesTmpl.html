@@ -1,15 +1,15 @@
 <div class="container">
 	<div class="text-center">
-		<a ui-sref="home"><button class="btn-primary glyphicon glyphicon-home">Home</button></a>
-		<a ui-sref="movies"><button class="btn-primary glyphicon glyphicon-film selected">Search</button></a>
-		<a ui-sref="cart"><button class="btn-primary glyphicon glyphicon-shopping-cart" ng-click="getItems()">Cart</button></a>
-		<a ui-sref="logout"><button class="btn-danger glyphicon glyphicon-log-out" ng-click="logoutUser()">Logout</button></a>
+		<a ui-sref="home"><button class="btn btn-primary glyphicon glyphicon-home">Home</button></a>
+		<a ui-sref="movies"><button class="btn btn-primary glyphicon glyphicon-film selected">Search</button></a>
+		<a ui-sref="cart"><button class="btn btn-primary glyphicon glyphicon-shopping-cart" ng-click="getItems()">Cart</button></a>
+		<a ui-sref="logout"><button class="btn btn-danger glyphicon glyphicon-log-out" ng-click="logoutUser()">Logout</button></a>
 	</div>
 <hr>
 	<div class="text-center">
 		<form>
 			<input class="search" type='text' placeholder="Search for movie by title" ng-model="title">
-			<button class="btn-primary" type="submit" ng-click="getMovies()">Search</button>
+			<button class="btn btn-primary" type="submit" ng-click="getMovies()">Search</button>
 		</form>
 	</div>
 <br>
@@ -25,6 +25,6 @@
 		<div class="col-md-3 text-center"><img ng-src="{{movie.image}}"></div>
 		<div class="col-md-3 text-center title">{{movie.name}}</div>
 		<div class="col-md-3 text-center price">{{movie.salePrice | currency}}</div>
-		<div class="col-md-3 text-center"><button class="btn-success" ng-click="addItem(movie)">Add To Cart</button></div>
+		<div class="col-md-3 text-center"><button class="btn btn-success" ng-click="addItem(movie)">Add To Cart</button></div>
 	</div>
 </div>
