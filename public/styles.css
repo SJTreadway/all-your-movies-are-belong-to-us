@@ -41,4 +41,5 @@ a:hover, a:visited {
 	position: absolute;
 	bottom: 0;
 	width: 100%;
+	font-size: 2em !important;
 }
