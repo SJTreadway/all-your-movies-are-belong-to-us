@@ -26,9 +26,6 @@ a:hover, a:visited {
 .title, .price, .quantity, .link {
 	font-size: 1.5em !important;
 }
-.remove {
-	width: 20%;
-}
 .search {
 	width: 20%;
 }
