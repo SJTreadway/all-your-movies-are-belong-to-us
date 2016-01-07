@@ -34,6 +34,9 @@ a:hover, a:visited {
 	color: #337ab7;
 	border-color: white;
 }
+.hide {
+	display: block;
+}
 .footer {
 	position: absolute;
 	bottom: 0;
