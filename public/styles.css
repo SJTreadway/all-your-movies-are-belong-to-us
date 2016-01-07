@@ -24,7 +24,7 @@ a:hover, a:visited {
 	color: white;
 }
 .title, .price, .quantity, .link {
-	font-size: 1.5rem !important;
+	font-size: 1.5em !important;
 }
 .search {
 	width: 20%;
@@ -40,7 +40,7 @@ a:hover, a:visited {
 	width: 100%;
 }
 .footer h6 {
-	font-size: 1.1rem !important;
+	font-size: 1.1em !important;
 }
 
 
