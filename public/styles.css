@@ -47,7 +47,7 @@ a:hover, a:visited {
 }
 
 
-@media (max-width: 820px) {
+@media screen (max-width: 820px) {
 	body {
 		background-image: none;
 		background-color: slategray;
