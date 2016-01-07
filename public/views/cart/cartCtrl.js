@@ -2,6 +2,9 @@
 	angular.module('storeApp').controller('cartCtrl', function($scope, mainService) {
 
 		$scope.emptyCart = function() {
+			if ($scope.$parent.user.cart.items === 0) {
+				return;
+			}
 			mainService.emptyCart($scope.$parent.user._id).then(function(res) {
 				$scope.$parent.getItems();
 				alert("Thank you for your purchase!");
