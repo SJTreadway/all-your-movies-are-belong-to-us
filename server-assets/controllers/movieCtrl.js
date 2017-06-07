@@ -1,6 +1,6 @@
 var mongoose = require('mongoose'),
     request = require('request'),
-    key = process.env.API_KEY || require('../middleware/key'),
+    key = 'JJD3Wp93IcpZbzvcodajQLsV',
     Movies = 'http://api.bestbuy.com/v1/products(type=\"movie\")?format=json&apiKey=' + key;
 	
 var query = '',
@@ -18,7 +18,5 @@ module.exports = {
   	request.get('http://api.bestbuy.com/v1/products(' + query + ')?pageSize=' + num + '&show=sku,image,name,salePrice&sort=salesRankMediumTerm.asc&format=json&apiKey=' + key, function(err, response, body) {
   		return res.send(body);
   	})
-  },
-
-
+  }
 };
