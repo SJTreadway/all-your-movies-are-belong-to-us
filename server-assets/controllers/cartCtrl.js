@@ -7,7 +7,7 @@ module.exports = {
 		User.findById(req.params.id).exec().then(function(user) {
 			var items = user.cart.items,
 				flag = true;
-			for (var i = 0; items.length && i < items.length; i++) {
+			for (var i = 0; i < items.length; i++) {
 				if (req.body.product.name === items[i].product.name) {
 					items[i].quantity++;
 					flag = false;
